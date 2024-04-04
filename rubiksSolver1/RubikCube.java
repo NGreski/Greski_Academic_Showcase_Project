@@ -281,9 +281,10 @@ public class RubikCube extends FaceCreate{
 			
 				if(targetStickerFacingUp() != null){ 
 					while(Up.face[1][1] != 'W'){
+						System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 						this.TurnLayerUpClockwise();
 						numberOfTurns++;
-			
+						this.print(); //added by Noah
 
 					}
 					
@@ -292,8 +293,10 @@ public class RubikCube extends FaceCreate{
 				
 				} else if (targetStickerFacingSideExists()){ 
 					while(Front.getColor(0, 0) != 'W' && Front.getColor(0,1) != 'W'){ 
+						System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 						this.TurnLayerUpClockwise();
 						numberOfTurns++;
+						this.print(); //added by Noah
 									
 					}
 					if(Front.face[0][1] == 'W'){ 
@@ -341,6 +344,7 @@ public class RubikCube extends FaceCreate{
 
 
 					while(Up.face[1][0] != 'Y'){
+						System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 						numberOfTurns++;
 						this.TurnLayerUpClockwise();
 					}
@@ -353,6 +357,7 @@ public class RubikCube extends FaceCreate{
 				} else {
 					
 					numberOfTurns++;
+					System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 					this.TurnLayerUpClockwise();
 				
 					if(Front.face[0][1] == 'Y'){
@@ -363,6 +368,7 @@ public class RubikCube extends FaceCreate{
 					} else {
 					
 						while(Up.face[0][1] != 'Y'){
+							System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 							numberOfTurns++;
 							this.TurnLayerUpClockwise();
 						}
@@ -375,8 +381,10 @@ public class RubikCube extends FaceCreate{
 			
 
 				while(Up.face[1][1] != 'Y'){
+					System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 					numberOfTurns++;
 					this.TurnLayerUpClockwise();
+					this.print(); //added by Noah
 				}
 				if(Up.face[0][0] == 'Y'){
 				
@@ -406,8 +414,10 @@ public class RubikCube extends FaceCreate{
 
 			} else{
 				while((Front.face[0][0] != 'Y' || Front.face[0][1] != 'Y')){ 
+					System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 					numberOfTurns++;
 					this.TurnLayerUpClockwise();
+					this.print(); //added by Noah
 				}
 				if(Right.face[0][1] == 'Y'){
 					numberOfTurns+=8;
@@ -438,8 +448,10 @@ public class RubikCube extends FaceCreate{
 			
 		
 			while(Front.face[0][0] != Front.face[0][1]){
+				System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 				numberOfTurns++;
 				this.TurnLayerUpClockwise();
+				this.print(); //added by Noah
 			}
 			numberOfTurns+=7;
 			this.scramble("R U' R F2 R' U R'");
@@ -449,8 +461,10 @@ public class RubikCube extends FaceCreate{
 		
 			
 			while(Left.face[1][0] != Left.face[1][1]){
+				System.out.println(numberOfTurns + ": TurnLayerDownClockwise"); //added by Noah
 				numberOfTurns++;
 				this.TurnLayerDownClockwise();
+				this.print(); //added by Noah
 			}
 			numberOfTurns+=9;
 			this.scramble("R2 U R2 U' R2 U R2 U' R2");
@@ -459,12 +473,16 @@ public class RubikCube extends FaceCreate{
 			System.out.println("OPP OPP");
 	
 			while(Front.face[0][0] != Front.face[0][1]){
+				System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 				numberOfTurns++;
 				this.TurnLayerUpClockwise();
+				this.print(); //added by Noah
 			}
 			while(Front.face[1][0] != Front.face[1][1]){
+				System.out.println(numberOfTurns + ": TurnLayerDownClockwise"); //added by Noah
 				numberOfTurns++;
 				this.TurnLayerDownClockwise();
+				this.print(); //added by Noah
 			}
 			numberOfTurns+=7;
 			this.scramble("R2 U' B2 U2 R2 U' R2");
@@ -485,6 +503,7 @@ public class RubikCube extends FaceCreate{
 			System.out.println("OPP SOLVE");
 		
 			while(Left.face[0][0] != Left.face[0][1]){
+				System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 				numberOfTurns++;
 				this.TurnLayerUpClockwise();
 			}
@@ -495,8 +514,10 @@ public class RubikCube extends FaceCreate{
 			System.out.println("SOLVE OPP");
 		
 			while(Left.face[1][0] != Left.face[1][1]){
+				System.out.println(numberOfTurns + ": TurnLayerDownClockwise"); //added by Noah
 				numberOfTurns++;
 				this.TurnLayerDownClockwise();
+				this.print(); //added by Noah
 			}		
 			numberOfTurns+=11;
 			this.scramble("R' U2 R' U' R U2 R' F R' F' R'");
@@ -510,8 +531,10 @@ public class RubikCube extends FaceCreate{
 
 		
 		while(Front.face[0][0] != Front.face[1][0]){
+			System.out.println(numberOfTurns + ": TurnLayerUpClockwise"); //added by Noah
 			numberOfTurns++;
 			this.TurnLayerUpClockwise();
+			this.print(); //added by Noah
 		}
 		System.out.println(numberOfTurns + ": AUF");
 		System.out.println(numberOfTurns);
