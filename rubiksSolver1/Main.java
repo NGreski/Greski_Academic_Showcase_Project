@@ -10,14 +10,14 @@ public class Main {
 		RubikCube c = new RubikCube();
 
 		double averageMoves = 0;
-		for(int i=0; i < 10; i++){
+		for(int i=0; i < 1; i++){
 			String s = RubikCube.generateScramble();		
 			c.scramble(s);
 			
 			averageMoves+= c.Solve();	
 		} 
 		
-		System.out.println("Average Moves: " + averageMoves/10);
+		System.out.println("Average Moves: " + averageMoves);
 		
 	}
 }
