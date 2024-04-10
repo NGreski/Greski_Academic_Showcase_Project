@@ -223,8 +223,8 @@ public class rubikscube {
       }  
       System.out.println();
       strat.clear();
-      printMoveCount(); //added by Noah
-      count=0;
+      //printMoveCount(); //added by Noah
+      //count=0;
     }
     public void corners(){
       while(!(cornersInPosition())){
@@ -1071,7 +1071,8 @@ public class rubikscube {
     }
 
     //method added by Noah
-    public void printMoveCount(){
+    public int printMoveCount(){
       System.out.println("Moves to solve: " + count);
+      return count;
     }
 }
