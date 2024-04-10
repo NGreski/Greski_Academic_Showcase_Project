@@ -11,7 +11,7 @@ public class rubikscubetest {
             moves+= r.printMoveCount();
         }
 
-        System.out.println("Average Moves; " + moves/10); //added by Noah
+        System.out.println("Average Moves: " + moves/10); //added by Noah
 
 
         
