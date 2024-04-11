@@ -8,9 +8,9 @@ public class rubikscubetest {
         double averageMoves;
         long totalTime = 0;
         double averageTime = 0;
-        double numCubes = 10;
+        double numCubes = 1000;
 
-        try (FileWriter writer = new FileWriter("X2_10.txt")) {
+        try (FileWriter writer = new FileWriter("X2_1000.txt", true)) {
             for(int i = 0; i < numCubes; i++){ //loop added by Noah
                 rubikscube r=new rubikscube(2);
                 r.scramble();
@@ -29,7 +29,7 @@ public class rubikscubetest {
             System.out.println("Average Moves: " + averageMoves); //edited for testing
             System.out.println("Average Time: " + String.format("%.6f", averageTime) + "ms"); 
 
-            writer.write(numCubes + " " + averageMoves + " " + averageTime);
+            writer.write(numCubes + " " + averageMoves + " " + averageTime + "\n");
             
 
             //commented out by Noah, not looking at 3x3 cubes

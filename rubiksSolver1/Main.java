@@ -15,10 +15,10 @@ public class Main {
 		int moves = 0;
 		double averageMoves = 0;
 		long totalTime = 0;
-		double numCubes = 10;
+		double numCubes = 1000;
 		double averageTime = 0;
 
-		try (FileWriter writer = new FileWriter("X1_10.txt")) {
+		try (FileWriter writer = new FileWriter("X1_1000.txt", true)) {
 			for(int i=0; i < numCubes; i++){ //edited number of cubes to solve for testing(added by Noah)
 				String s = RubikCube.generateScramble();		
 				c.scramble(s);
@@ -38,7 +38,7 @@ public class Main {
 			System.out.println("Average Moves: " + averageMoves); //edited for testing
 			System.out.println("Average Time: " + String.format("%.6f", averageTime) + "ms"); 
 
-			writer.write(numCubes + " " + averageMoves + " " + averageTime);
+			writer.write(numCubes + " " + averageMoves + " " + averageTime + "\n");
 			
 		}catch(IOException e){
 			System.err.println("Error writing to file: " + e.getMessage());
