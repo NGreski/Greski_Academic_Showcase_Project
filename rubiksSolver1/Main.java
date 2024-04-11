@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * CODE FROM Nabil-1999
  * EDITED BY NOAH GRESK
@@ -9,15 +12,36 @@ public class Main {
 		
 		RubikCube c = new RubikCube();
 
+		int moves = 0;
 		double averageMoves = 0;
-		for(int i=0; i < 10; i++){ //edited number of cubes to solve for testing(added by Noah)
-			String s = RubikCube.generateScramble();		
-			c.scramble(s);
+		long totalTime = 0;
+		double numCubes = 10;
+		double averageTime = 0;
+
+		try (FileWriter writer = new FileWriter("X1_10.txt")) {
+			for(int i=0; i < numCubes; i++){ //edited number of cubes to solve for testing(added by Noah)
+				String s = RubikCube.generateScramble();		
+				c.scramble(s);
+				
+				long start  = System.currentTimeMillis();
+				moves += c.Solve();	
+				long end = System.currentTimeMillis();
+				totalTime += (end - start);
+			} 
+
+
+			averageMoves = moves/numCubes;
+			averageTime = totalTime/numCubes;
+
+
 			
-			averageMoves+= c.Solve();	
-		} 
-		
-		System.out.println("Average Moves: " + averageMoves/10); //edited for testing
-		
+			System.out.println("Average Moves: " + averageMoves); //edited for testing
+			System.out.println("Average Time: " + String.format("%.6f", averageTime) + "ms"); 
+
+			writer.write(numCubes + " " + averageMoves + " " + averageTime);
+			
+		}catch(IOException e){
+			System.err.println("Error writing to file: " + e.getMessage());
+		}
 	}
 }
