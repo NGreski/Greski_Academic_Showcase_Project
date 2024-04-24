@@ -1,0 +1,23 @@
+siena to scotia (2 miles sidewalks) (found in 35.5mi)
+java Dijkstra siena50-area.tmg US9@FidLn NY147@VleyRd siena-scotia.pth
+
+siena to ualbany(2 miles sidewalks) (found in 6.41mi)
+java Dijkstra siena50-area.tmg US9@FidLn I-87/I-90@1 siena-ualbany.pth
+
+scotia to sacandaga lake(2 miles sidewalks) (not found)
+java Dijkstra siena50-area.tmg NY147@VleyRd NY30@CR155 scotia-sacandagalake.pth
+
+siena to marist (2 miles sidewalks) (not found)
+java Dijkstra siena100-area.tmg US9@FidLn NY9G_Pou/US9_S siena-marist.pth
+
+siena to bikeshop (2 miles sidewalks) (not found)
+java Dijkstra siena50-area.tmg US9@FidLn NY7@HallRd siena-bikeshop.pth
+
+siena to RPI (2 miles sidewalks) (found in 9.60mi)
+java Dijkstra siena50-area.tmg US9@FidLn NY7/NY40 siena-rpi.pth
+
+latham to albany (2 miles sidewalks) (found in 7.63mi)
+java Dijkstra siena50-area.tmg NY2/US9 NY32/US9 latham-albany.pth
+
+siena to naples(2 miles sidewalks) (not found)
+java Dijkstra USA-country.tmg US9@FidLn US41@5thAve_W siena-naples.pth
