@@ -13,6 +13,7 @@ import java.util.Scanner;
  * as elements of the priority queue underlying Dijkstra's algorithm.
  *
  * @author Jim Teresco
+ * @author Noah Greski
  */
 class PQEntry implements Comparable<PQEntry> {
 
