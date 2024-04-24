@@ -8,6 +8,7 @@
  * to the head of the list.
  *
  * @author Jim Teresco
+ * @author Noah Greski
  *
  */
 
@@ -23,6 +24,7 @@ public class HighwayEdge {
     protected int dest;
     protected LatLng[] shapePoints;
     protected double length;
+    protected boolean hasSidewalk; //side walk flag added by Noah
         
     // and HighwayEdge is also a linked list
     protected HighwayEdge next;
@@ -33,15 +35,39 @@ public class HighwayEdge {
 	dest = dst;
 	shapePoints = points;
 	next = n;
-	length = 0.0;
 	LatLng prevPoint = startPoint;
+    double edgeLength = 0.0; //added
+    
 	if (points != null) {
-	    for (int pointNum = 0; pointNum < points.length; pointNum++) {
-		length += prevPoint.distanceTo(points[pointNum]);
-		prevPoint = points[pointNum];
-	    }
+
+        for (LatLng point : points) { //added
+                edgeLength += prevPoint.distanceTo(point);
+                prevPoint = point;
+        }
 	}
-	length += prevPoint.distanceTo(endPoint);
+
+    edgeLength += prevPoint.distanceTo(endPoint); //added
+    length = edgeLength;
+
+
+    hasSidewalk = (length <= 2.0); //added
+
     }
+
+    public boolean isSidewalk() { //added
+        return hasSidewalk;
+    }
+
+    @Override
+    public String toString() { //added
+        return "HighwayEdge{" +
+                "label='" + label + '\'' +
+                ", source=" + source +
+                ", dest=" + dest +
+                ", length=" + length +
+                ", hasSidewalk=" + hasSidewalk +
+                '}';
+    }
+
 }
 

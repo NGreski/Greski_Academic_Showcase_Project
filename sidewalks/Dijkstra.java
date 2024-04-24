@@ -137,59 +137,47 @@ public class Dijkstra {
 	// the start vertex
 	HighwayEdge e = start.head;
 	while (e != null) {
-	    if (DEBUG) {
-		System.out.println("pq.add(" + e.length + ", edge to " + g.vertices[e.dest].label + " via " + e.label + ")");
-	    }
-	    pq.add(new PQEntry(e.length, e));
-	    e = e.next;
+		if(e.isSidewalk()){ //added
+			if (DEBUG) {
+			System.out.println("pq.add(" + e.length + ", edge to " + g.vertices[e.dest].label + " via " + e.label + ")");
+			}
+			pq.add(new PQEntry(e.length, e));
+		}
+			e = e.next;
 	}
 
-	// we'll loop until we reach the vertex number of the destination
-	int reached = start.vNum;
-	while (reached != dest.vNum) {
+int reached = start.vNum;
+while (reached != dest.vNum && !pq.isEmpty()) {
+    PQEntry nextPQ = pq.remove();
+    HighwayEdge nextEdge = nextPQ.lastEdge;
+    
+    if (g.vertices[nextEdge.dest].visited) {
+        continue; 
+    }
+    
+    g.vertices[nextEdge.dest].visited = true;
+    reached = g.vertices[nextEdge.dest].vNum;
 
-	    // find an edge from the PQ that takes us to an unvisited
-	    // vertex
-	    HighwayEdge nextEdge = null;
-	    PQEntry nextPQ = null;
-	    do {
-		// take a value from the PQ
-		nextPQ = pq.remove();
-		nextEdge = nextPQ.lastEdge;
-		if (DEBUG) {
-		    System.out.println("pq.remove(): " + nextPQ.totalDist + ", edge to " + g.vertices[nextEdge.dest].label + ", visited=" + g.vertices[nextEdge.dest].visited);
-		}
-	    } while (g.vertices[nextEdge.dest].visited);
+    result.put(g.vertices[nextEdge.dest].label, nextEdge);
 
-	    // we found a shortest path to a new vertex
-	    if (DEBUG) {
-		System.out.println("Found shortest path to " + g.vertices[nextEdge.dest].label);
-	    }
-	    result.put(g.vertices[nextEdge.dest].label, nextEdge);
-	    g.vertices[nextEdge.dest].visited = true;
-	    reached = g.vertices[nextEdge.dest].vNum;
+    HighwayEdge neighborEdge = g.vertices[nextEdge.dest].head;
+    while (neighborEdge != null) {
+        if (!g.vertices[neighborEdge.dest].visited && neighborEdge.isSidewalk()) {
+            double newDist = nextPQ.totalDist + neighborEdge.length;
+            pq.add(new PQEntry(newDist, neighborEdge));
+            
+            if (DEBUG) {
+                System.out.println("pq.add(" + newDist + ", edge to " + g.vertices[neighborEdge.dest].label + " via " + neighborEdge.label + ")");
+            }
+        }
+        neighborEdge = neighborEdge.next;
+    }
+}
 
-	    if (reached != dest.vNum) {
-		// add to PQ the places we can get to directly from
-		// the vertex we just found
-		e = g.vertices[nextEdge.dest].head;
-		while (e != null) {
-		    if (g.vertices[e.dest].visited) {
-			if (DEBUG) {
-			    System.out.println("Found edge to previously visited vertex " + g.vertices[e.dest].label);
-			}
-		    }
-		    else {
-			if (DEBUG) {
-			    System.out.println("pq.add(" + (nextPQ.totalDist + e.length) + ", edge to " + g.vertices[e.dest].label + " via " + e.label + ")");
-			}
-			pq.add(new PQEntry(nextPQ.totalDist + e.length, e));
-		    }
-		    e = e.next;
-		}
-	    }
-	}
-
+if (reached != dest.vNum) {
+    System.err.println("No path found to the destination.");
+} else {
+    
 	// map is populated, find the sequence of edges to traverse
 	// for the shortest path
 	// build ArrayList that we will traverse in reverse to get
@@ -231,4 +219,5 @@ public class Dijkstra {
 	    pw.close();
 	}
     }
+}
 }
